@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}データ詳細{% endblock %}
+
+{% block active_pulse_rate_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="my-div-style w-100">
+        <div class="row">
+            <div class="col-3">
+                <strong>データタイトル</strong>
+            </div>
+            <div class="col-9">
+                {{ object.title }}
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-3">
+                <strong>ファイル名</strong>
+            </div>
+            <div class="col-9">
+                <a href="{{ object.data.url }}">{{ object.data }}</a>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-3">
+                <strong>グラフ</strong>
+            </div>
+            <div class="col-9">
+                {{ svg }}
+            </div>
+        </div>
+        <hr>
+
+        <a class="btn btn-success mt-5 mb-3" href="{% url 'pulse_rate:pulse_rate_update' object.pk %}">編集</a>
+        <a class="btn btn-danger mt-5 ml-2 mb-3" href="{% url 'pulse_rate:pulse_rate_delete' object.pk %}">削除</a>
+        <a class="btn btn-primary mt-5 ml-2 mb-3" href="javascript:history.back()">< Back</a>
+    </div>
+</div>
+{% endblock %}
