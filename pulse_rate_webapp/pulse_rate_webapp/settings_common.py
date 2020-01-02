@@ -151,7 +151,6 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-LOGIN_REDIRECT_URL = 'pulse_rate:pulse_rate_list'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
