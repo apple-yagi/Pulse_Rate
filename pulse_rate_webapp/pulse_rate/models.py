@@ -4,7 +4,7 @@ from accounts.models import CustomUser
 class Pulse_Rate(models.Model):
 
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
-    title = models.CharField(verbose_name='タイトル', max_length=40)
+    title = models.CharField(verbose_name='タイトル', max_length=40, help_text='※個人が特定できるタイトル禁止')
     data = models.FileField(verbose_name='データ')
     fc_low = models.FloatField(verbose_name='上限周波数', default=10)
     fc_high = models.FloatField(verbose_name='下限周波数', default=0)

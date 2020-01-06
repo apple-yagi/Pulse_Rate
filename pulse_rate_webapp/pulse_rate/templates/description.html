@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}inquiry{% endblock %}
+
+{% block active_inquiry %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="my-div-style w-100">
+        <h1>
+            <strong>データの書式について</strong>
+        </h1>
+
+        <div class="row">
+            <table class="table">
+                <div class="col-md">
+                    <p>
+                        ・１行目からデータを準備してください
+                        <br>
+                        ・１列目は時間（単位は秒），２列目は信号（mV）です
+                    </p>
+                </div>
+                <div class="col-md">
+                    <img src="{% static 'img/description.png' %}" alt="description" width="200" height="300">
+                </div>
+            </table>
+        </div>
+    </div>
+    <a class="btn btn-info mt-5 ml-2 mb-3" href="{% url 'pulse_rate:pulse_rate_create' %}">新規追加</a>
+</div>
+{% endblock %}

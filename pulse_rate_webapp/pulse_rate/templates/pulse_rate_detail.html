@@ -27,7 +27,7 @@
                 <strong>ファイル名</strong>
             </div>
             <div class="col-9">
-                <a href="{{ object.data.url }}">{{ object.data }}</a>
+                <a href="{{ object.data.url }}">{{ object.data.url }}</a>
             </div>
         </div>
         <hr>
@@ -37,25 +37,7 @@
                 <strong>データ</strong>
             </div>
             <div class="col-9">
-                <img src="{% url 'pulse_rate:plot_filter' object.pk %}" width=600, height=300>
-            </div>
-        </div>
-        <hr>
-
-        <div class="row">
-            <div class="col-3">
-                <strong>周波数パラメータ</strong>
-            </div>
-            <div class="col-9">
-                <form method="post">
-                    {% csrf_token %}
-                    <table class="table">
-                        {{ form.as_table }}
-                    </table>
-                    <div class="offset-sm-4 col-sm-8">
-                        <button class="btn btn-primary" type="submit">解析</button>
-                    </div>
-                </form>
+                <img src="{% url 'pulse_rate:plot' object.pk %}" width=600, height=300>
             </div>
         </div>
         <hr>
@@ -78,7 +60,10 @@
                 {{ object.updated_at }}
             </div>
         </div>
-        <a class="btn btn-success mt-5 mb-3" href="{% url 'pulse_rate:pulse_rate_update' object.pk %}">編集</a>
+
+        <a class="btn btn-secondary mt-5 mb-3" href="{% url 'pulse_rate:pulse_rate_list' %}">一覧</a>
+        <a class="btn btn-info mt-5 ml-2 mb-3" href="{% url 'pulse_rate:pulse_rate_analysis' object.pk %}">解析</a>
+        <a class="btn btn-success mt-5 ml-2 mb-3" href="{% url 'pulse_rate:pulse_rate_update' object.pk %}">編集</a>
         <a class="btn btn-danger mt-5 ml-2 mb-3" href="{% url 'pulse_rate:pulse_rate_delete' object.pk %}">削除</a>
         <a class="btn btn-primary mt-5 ml-2 mb-3" href="javascript:history.back()">< Back</a>
 

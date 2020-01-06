@@ -57,16 +57,9 @@ class PulseRateListView(LoginRequiredMixin, generic.ListView):
         return pulse_rates
 
 
-class PulseRateDetailView(LoginRequiredMixin, generic.DetailView, generic.UpdateView):
+class PulseRateDetailView(LoginRequiredMixin, generic.DetailView):
     model = Pulse_Rate
     template_name = 'pulse_rate_detail.html'
-    form_class = PulseRateFilterForm
-
-    def get_success_url(self):
-        return reverse_lazy('pulse_rate:pulse_rate_detail', kwargs={'pk': self.kwargs['pk']})
-
-    def form_valid(self, form):
-        return super().form_valid(form)
 
 
 class PulseRateCreateView(LoginRequiredMixin, generic.CreateView):
@@ -114,9 +107,16 @@ class PulseRateDeleteView(LoginRequiredMixin, generic.DeleteView):
         return super().delete(request, *args, **kwargs)
 
 
-class PulseRateAnalysisView(LoginRequiredMixin, generic.DetailView, generic.FormView):
+class PulseRateAnalysisView(LoginRequiredMixin, generic.DetailView, generic.UpdateView):
     model = Pulse_Rate
     template_name = 'pulse_rate_analysis.html'
+    form_class = PulseRateFilterForm
+
+    def get_success_url(self):
+        return reverse_lazy('pulse_rate:pulse_rate_analysis', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
 def get_svg(request, pk):
@@ -132,4 +132,8 @@ def get_filter_svg(request, pk):
     svg = pltToSvg()
     response = HttpResponse(svg, content_type='image/svg+xml')
     return response
+
+
+class DescriptionView(generic.TemplateView):
+    template_name = 'description.html'
 

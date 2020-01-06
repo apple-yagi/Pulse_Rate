@@ -2,6 +2,7 @@ import io
 import pathlib
 import numpy as np
 from scipy import signal
+from scipy import fftpack
 
 import matplotlib.pyplot as plt
 
@@ -17,13 +18,15 @@ def setPlt(pk):
     lines = f.read().split()
 
     # -----変数の準備-----
-    # N = int(len(lines) / 2)
-    N = 2048
+    N = 4096
+    lines_length = int(len(lines) / 2)
+    if lines_length < N:
+        N = 2048
+
     dt = float(lines[2]) - float(lines[0])
     pulse = []
     for num in range(N - 1):
         pulse.append(float(lines[num * 2 + 1]))
-
     # -------------------
 
     # -----サンプリング周波数計算-----
@@ -74,13 +77,15 @@ def set_filter_Plt(pk):
     lines = f.read().split()
 
     # -----変数の準備-----
-    # N = int(len(lines) / 2)
-    N = 2048
+    N = 4096
+    lines_length = int(len(lines) / 2)
+    if lines_length < N:
+        N = 2048
+
     dt = float(lines[2]) - float(lines[0])
     pulse = []
     for num in range(N - 1):
         pulse.append(float(lines[num * 2 + 1]))
-
     # -------------------
 
     # -----フィルタ設計-----
@@ -91,7 +96,7 @@ def set_filter_Plt(pk):
     # ----------------------
 
     # -----サンプリング周波数計算-----
-    t = np.arange(0, N * dt, dt)  # time
+    t = np.arange(0, lines_length * dt, dt)  # time
     freq = np.linspace(0, 1.0 / dt, N)  # frequency step
     # -----------------------------
 
@@ -155,9 +160,11 @@ def set_filter_Plt(pk):
     plt.xlim(0, 10)
     plt.xlabel("frequency")
     plt.ylabel("amplitude")
+    plt.plot(freq[maxId], gf_abs[maxId], "ro")
     plt.grid()
 
-    plt.plot(freq[maxId], gf_abs[maxId], "ro")
+    for i in range(len(maxId[0])):
+        plt.text(freq[maxId[0][i]], gf_abs[maxId[0][i]], round(freq[maxId[0][i]], 2))
     plt.tight_layout()
 
 

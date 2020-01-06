@@ -27,24 +27,62 @@
                 <strong>ファイル名</strong>
             </div>
             <div class="col-9">
-                <a href="{{ object.data.url }}">{{ object.data }}</a>
+                <a href="{{ object.data.url }}">{{ object.data.url }}</a>
             </div>
         </div>
         <hr>
 
         <div class="row">
             <div class="col-3">
-                <strong>グラフ</strong>
+                <strong>データ</strong>
             </div>
             <div class="col-9">
-                {{ svg }}
+                <img src="{% url 'pulse_rate:plot_filter' object.pk %}" width=800, height=400>
             </div>
         </div>
         <hr>
 
-        <a class="btn btn-success mt-5 mb-3" href="{% url 'pulse_rate:pulse_rate_update' object.pk %}">編集</a>
+        <div class="row">
+            <div class="col-3">
+                <strong>周波数パラメータ</strong>
+            </div>
+            <div class="col-9">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="offset-sm-2 col-sm-8">
+                        {{ form.as_p }}
+                    </div>
+
+                    <div class="offset-sm-6 col-sm-8">
+                        <button class="btn btn-primary" type="submit">解析</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-3">
+                <strong>解析について</strong>
+            </div>
+            <div class="col-9">
+                <p>
+                    ・データ数が4096より少ない場合は2048，4096以上の場合は4096で解析します
+                    <br>
+                    ・パワースペクトルの横軸は0~10Hzで表示します
+                    <br>
+                    ・周波数パラメータの値は保存されます
+                </p>
+            </div>
+        </div>
+
+        <a class="btn btn-secondary mt-5 mb-3" href="{% url 'pulse_rate:pulse_rate_list' %}">一覧</a>
+        <a class="btn btn-info mt-5 ml-2 mb-3" href="{% url 'pulse_rate:pulse_rate_detail' object.pk %}">詳細</a>
+        <a class="btn btn-success mt-5 ml-2 mb-3" href="{% url 'pulse_rate:pulse_rate_update' object.pk %}">編集</a>
         <a class="btn btn-danger mt-5 ml-2 mb-3" href="{% url 'pulse_rate:pulse_rate_delete' object.pk %}">削除</a>
         <a class="btn btn-primary mt-5 ml-2 mb-3" href="javascript:history.back()">< Back</a>
+
     </div>
 </div>
 {% endblock %}
