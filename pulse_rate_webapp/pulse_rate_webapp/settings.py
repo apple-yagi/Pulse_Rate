@@ -158,7 +158,7 @@ LOGGING = {
             'formatter': 'prod',
             'when': 'D',
             'interval': 1,
-            'backupCount': 7
+            'backupCount': 7,
         },
     },
 
