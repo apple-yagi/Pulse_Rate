@@ -12,6 +12,5 @@
 * macOs
 * Python 3.7
 * Django 3.0.1
-* Webアプリケーションサーバ：Nginx
 * データベース：postgresql
 * インフラ：AMAZON EC2
