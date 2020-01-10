@@ -16,8 +16,8 @@ https://pulse-rate.yagi.fun/
 
 ・カットオフ周波数を選択しフィルタを作成でき使用できる
 # 環境
-* macOs
 * Python 3.7
 * Django 3.0.1
 * データベース：postgresql
-* インフラ：AMAZON EC2
+* インフラ：Amazon EC2
+* メール配信：Amazon SES
