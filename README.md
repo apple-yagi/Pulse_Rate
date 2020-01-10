@@ -9,6 +9,6 @@
 
 ・カットオフ周波数を選択しフィルタを作成でき使用できる
 # 開発環境
-・macOs
-・Python 3.7
-・Django 3.0.1
+*macOs
+*Python 3.7
+*Django 3.0.1
