@@ -21,3 +21,4 @@ https://pulse-rate.yagi.fun/
 * データベース：postgresql
 * インフラ：Amazon EC2
 * メール配信：Amazon SES
+* Xserver独自ドメイン取得：yagi.fun
